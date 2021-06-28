@@ -6,21 +6,25 @@ namespace EmployeeComputation
     {
         static void Main(string[] args)
         {
-            int empPresent = 1;
+            int partTime = 2;
+            int fullTime = 1;
             int empHour = 0;
             int empWage = 0;
             int empPerHour = 20;
             Random random = new Random();
             int empInput = random.Next(0, 2);
-            if (empInput == empPresent)
+            if (empInput == fullTime)
             {
-                Console.WriteLine("Employee is Present");
-                empHour = 8;
+                Console.WriteLine("Employee is Working Fulltime");
+
+                empHour = 9;
+
             }
-            else
+            else if (empInput == partTime)
             {
-                Console.WriteLine("Employee is Absent");
-                empHour = 0;
+                Console.WriteLine("Employee is Working Partime");
+
+                empHour = 4;
             }
 
             empWage = empPerHour * empHour;
