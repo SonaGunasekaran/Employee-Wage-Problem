@@ -3,32 +3,40 @@
 namespace EmployeeComputation
 {
     class Program
-    {
+    { 
+        public const int FULL_TIME = 1;
+        public const int PART_TIME = 2;
+        public const int EMP_PER_HOUR = 20;
+    
         static void Main(string[] args)
         {
-            int partTime = 2;
-            int fullTime = 1;
             int empHour = 0;
             int empWage = 0;
-            int empPerHour = 20;
+            
             Random random = new Random();
-            int empInput = random.Next(0, 2);
-            if (empInput == fullTime)
+            int empInput = random.Next(0, 3);
+            switch (empInput)
             {
-                Console.WriteLine("Employee is Working Fulltime");
+                case FULL_TIME:
+                    Console.WriteLine("Employee is Working Fulltime");
+                    empHour = 8;
+                    break;
 
-                empHour = 9;
+                case PART_TIME:
+
+                    Console.WriteLine("Employee is Working Partime");
+                    empHour = 4;
+                    break;
+
+                default:
+                    empHour = 0;
+                    break;
 
             }
-            else if (empInput == partTime)
-            {
-                Console.WriteLine("Employee is Working Partime");
 
-                empHour = 4;
-            }
-
-            empWage = empPerHour * empHour;
-            Console.WriteLine("The daily wage of the employee = " + empWage);
+                    empWage = EMP_PER_HOUR * empHour;
+                    Console.WriteLine("The daily wage of the employee = " + empWage);
+            
         }
     }
 }
