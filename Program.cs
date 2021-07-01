@@ -2,16 +2,25 @@
 
 namespace EmployeeComputation
 {
-    class Program
-    { 
+    public class Program
+    {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
         public const int EMP_PER_HOUR = 20;
-        public const int WORKING_DAYS = 20;
-        public const int WORKING_HOURS = 100;
+        public const int MAX_WORKING_DAYS = 20;
+        public const int MAX_WORKING_HOURS = 100;
+
+        public static void Main(string[] args)
+        {
+
+            ComputingWage();
+            //ComputingWage("Tvs Next", 10, 20, 100);
+
+        }
 
 
-        static void Main(string[] args)
+
+        public static void ComputingWage()
         {
             int empHour = 0;
             int empWage = 0;
@@ -22,7 +31,7 @@ namespace EmployeeComputation
 
             Random random = new Random();
             int empInput = random.Next(0, 3);
-            while (workingDays <= WORKING_DAYS && workingHours <= WORKING_HOURS)
+            while (workingDays <= MAX_WORKING_DAYS && workingHours <= MAX_WORKING_HOURS)
             {
                 switch (empInput)
                 {
@@ -51,11 +60,11 @@ namespace EmployeeComputation
                 {
                     workingDays++;
                 }
+
+
             }
 
-                Console.WriteLine("The Employee Wage for maximum working days = " + totalWage);
-                  
-            
+            Console.WriteLine("Total Employee Wage for maximum " + " " + workingDays + " " + "days = " + " " + totalWage);
         }
     }
 }
