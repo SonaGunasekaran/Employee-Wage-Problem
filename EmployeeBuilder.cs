@@ -4,32 +4,42 @@ using System.Text;
 
 namespace EmployeeComputation
 {
-    class EmployeeBuilder
+    public class EmployeeBuilder
     {
-		public const int FULL_TIME = 1;
-		public const int PART_TIME = 2;
-		private int ratePerHour;
-		private string companyName;
-		private int maxWorkingDay;
-		private int maxHrPerMonth;
-        private int totalWage;
+        public const int FULL_TIME = 1;
+        public const int PART_TIME = 2;
 
-		public EmployeeBuilder(string companyName, int ratePerHour, int maxWorkingDay, int maxHrPerMonth)
-		{
-			this.companyName = companyName;
-			this.ratePerHour = ratePerHour;
-			this.maxHrPerMonth= maxHrPerMonth;
-			this.maxWorkingDay = maxWorkingDay;
-		}
-        public void ComputingWage( )
+        private int numOfCompany = 0;
+        private EmpComputeWage[] companyEmpWageArray;
+
+
+        public EmployeeBuilder()
+        {
+            this.companyEmpWageArray = new EmpComputeWage[5];
+        }
+        public void addCompanyEmpWage(String companyName, int ratePerHour, int maxWorkingHr, int maHrPerMonth)
+        {
+            companyEmpWageArray[this.numOfCompany] = new EmpComputeWage(companyName,ratePerHour, maxWorkingHr, maHrPerMonth);
+            numOfCompany++;
+        }
+        public void EmployeeCompute()
+        {
+            for (int i = 0; i < numOfCompany; i++)
+            {
+                companyEmpWageArray[i].setTotalEmpWage(this.EmployeeCompute(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].toString());
+            }
+        }
+        public int EmployeeCompute(EmpComputeWage empComputeWage)
         {
             //local variable
+
             int empHour = 0;
             int totalEmpHr= 0;
             int totalWorkingDays = 1;
 
 
-            while (totalWorkingDays<= this.maxWorkingDay && totalEmpHr <= this.maxHrPerMonth)
+            while (totalWorkingDays<=empComputeWage.maxWorkingDay && totalEmpHr <= empComputeWage.maxHrPerMonth)
             {
                 Random random = new Random();
 
@@ -63,15 +73,11 @@ namespace EmployeeComputation
                 totalWorkingDays ++;
             }
 
-            totalWage= totalEmpHr*this.ratePerHour;
-           // Console.WriteLine("In" + " " + companyName + " " + "Total Employee Wage for maximum " + " " + totalWorkingDays + " " + "days = " + " " + totalWage);
-
+            return totalEmpHr*empComputeWage.ratePerHour;
+           
         }
 
-        public string toString()
-        {
-            return "In" + " " + this.companyName + " " + "Total Employee Wage for maximum " + " " + this.maxWorkingDay+ " " + "days = " + " " + this.totalWage;
-        }
+
     }
 }
 	
