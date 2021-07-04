@@ -7,12 +7,10 @@ namespace EmployeeComputation
         public static void Main(string[] args)
         {
 
-            EmployeeBuilder amazon = new EmployeeBuilder("Amazon",20,25,50);
-            amazon.ComputingWage();
-            Console.WriteLine(amazon.toString());
-            EmployeeBuilder sirius = new EmployeeBuilder("Sirius", 20, 15, 50);
-            sirius.ComputingWage();
-            Console.WriteLine(sirius.toString());
+            EmployeeBuilder companyempWage = new EmployeeBuilder();
+            companyempWage.addCompanyEmpWage("Amazon", 10, 20, 40);
+            companyempWage.addCompanyEmpWage("Sirius", 20, 10, 30);
+            companyempWage.EmployeeCompute();
         }
     }
 }
