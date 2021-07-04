@@ -6,9 +6,13 @@ namespace EmployeeComputation
     {
         public static void Main(string[] args)
         {
-            
-            EmployeeWage.ComputingWage("Amazon", 20, 100);
-            EmployeeWage.ComputingWage("Sirius", 30, 100);
+
+            EmployeeBuilder amazon = new EmployeeBuilder("Amazon",20,25,50);
+            amazon.ComputingWage();
+            Console.WriteLine(amazon.toString());
+            EmployeeBuilder sirius = new EmployeeBuilder("Sirius", 20, 15, 50);
+            sirius.ComputingWage();
+            Console.WriteLine(sirius.toString());
         }
     }
 }
