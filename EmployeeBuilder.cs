@@ -11,24 +11,35 @@ namespace EmployeeComputation
 
         private int numOfCompany = 0;
         //initializing array
-        private EmpComputeWage[] companyEmpWageArray;
-
+        //private EmpComputeWage[] companyEmpWageArray;
+       List<EmpComputeWage> empComputeList;
+        Dictionary<string, EmpComputeWage> companyComputeList;
 
         public EmployeeBuilder()
         {
-            this.companyEmpWageArray = new EmpComputeWage[5];
+            this.empComputeList = new List<EmpComputeWage>();
+            this.companyComputeList = new Dictionary<string, EmpComputeWage>();
         }
         public void addCompanyEmpWage(String companyName, int ratePerHour, int maxWorkingHr, int maxHrPerMonth)
         {
-            companyEmpWageArray[this.numOfCompany] = new EmpComputeWage(companyName,ratePerHour, maxWorkingHr, maxHrPerMonth);
-            numOfCompany++;
+            EmpComputeWage emp = new EmpComputeWage( companyName,  ratePerHour,  maxWorkingHr,  maxHrPerMonth);
+            this.empComputeList.Add(emp);
+            this.companyComputeList.Add(companyName, emp);
         }
         public void EmployeeCompute()
         {
-            for (int i = 0; i < numOfCompany; i++)
+            foreach (EmpComputeWage emp in this.empComputeList)
             {
-                companyEmpWageArray[i].setTotalEmpWage(this.EmployeeCompute(this.companyEmpWageArray[i]));
-                Console.WriteLine(this.companyEmpWageArray[i].toString());
+                emp.setTotalEmpWage(this.EmployeeCompute(emp));
+                emp.DailyWage(emp);
+                Console.WriteLine("enter 1 if daily wages has to be displayed");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                if (choice == 1)
+                {
+                    emp.DailyWage(emp);
+                }
+
+                Console.WriteLine(emp.toString());
             }
         }
         private int EmployeeCompute(EmpComputeWage empComputeWage)
@@ -37,6 +48,7 @@ namespace EmployeeComputation
 
             int empHour = 0;
             int totalEmpHr= 0;
+            int empWage = 0;
             int totalWorkingDays = 1;
 
 
@@ -71,11 +83,19 @@ namespace EmployeeComputation
                 //Formula for calculate Employee Wage
 
                 totalEmpHr += empHour;
+                empWage=empHour + empComputeWage.ratePerHour;
+                empComputeWage.SetDailyWage(empWage, empComputeWage);
                 totalWorkingDays ++;
             }
 
             return totalEmpHr*empComputeWage.ratePerHour;
            
+        }
+
+        public int GetEmployeeWage(string company)
+        {
+           // int totalWage;
+            return (this.companyComputeList[company].totalWage);
         }
 
 
