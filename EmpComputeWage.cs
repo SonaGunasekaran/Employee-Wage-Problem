@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeComputation
 {
-    class EmpComputeWage
+    class EmpComputeWage 
     {
 
         public const int FULL_TIME = 1;
