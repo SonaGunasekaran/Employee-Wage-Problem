@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeComputation
 {
-    public class EmployeeBuilder
+    public class EmployeeBuilder : IComputeEmpWage
     {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
@@ -17,9 +17,9 @@ namespace EmployeeComputation
         {
             this.companyEmpWageArray = new EmpComputeWage[5];
         }
-        public void addCompanyEmpWage(String companyName, int ratePerHour, int maxWorkingHr, int maHrPerMonth)
+        public void addCompanyEmpWage(String companyName, int ratePerHour, int maxWorkingHr, int maxHrPerMonth)
         {
-            companyEmpWageArray[this.numOfCompany] = new EmpComputeWage(companyName,ratePerHour, maxWorkingHr, maHrPerMonth);
+            companyEmpWageArray[this.numOfCompany] = new EmpComputeWage(companyName,ratePerHour, maxWorkingHr, maxHrPerMonth);
             numOfCompany++;
         }
         public void EmployeeCompute()
@@ -30,7 +30,7 @@ namespace EmployeeComputation
                 Console.WriteLine(this.companyEmpWageArray[i].toString());
             }
         }
-        public int EmployeeCompute(EmpComputeWage empComputeWage)
+        private int EmployeeCompute(EmpComputeWage empComputeWage)
         {
             //local variable
 
