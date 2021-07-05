@@ -4,12 +4,13 @@ using System.Text;
 
 namespace EmployeeComputation
 {
-    public class EmployeeBuilder : IComputeEmpWage
+    public class EmployeeBuilder : IComputeEmpWage //Interface Method
     {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
 
         private int numOfCompany = 0;
+        //initializing array
         private EmpComputeWage[] companyEmpWageArray;
 
 
